@@ -1,22 +1,6 @@
 ﻿version: '3.4'
 
 services:
-  #db:
-  #  image: microsoft/mssql-server-windows-express
-  #  container_name: database
-  #  environment:
-  #    sa_password: "Swedq159753"
-  #    accept_eula: Y
-  #    attach_dbs: '[{"dbName":"CarSignal","dbFiles":["c:\\sql\\CarSignal.mdf","c:\\sql\\CarSignal_log.ldf"]}]'
-  #    command: powershell ./sql/InitBrocker.ps1
-  #  volumes:
-  #    - ./CS.InitSQL\:c:\sql\
-  #  networks:
-  #    frontend:
-  #      ipv4_address: 172.20.0.5
-  #  ports:
-  #    - "1433:1433"
-
   cs.dashboard:
     image: ${DOCKER_REGISTRY-}csdashboard
     container_name: dashboard
@@ -24,7 +8,7 @@ services:
       context: .
       dockerfile: CS.DashBoard\Dockerfile
     environment:
-     - CarSignalDb=Data Source=185.161.208.161,33301;Initial Catalog=CarSignal;Integrated Security=False;User id=swed_q;Password=qwe159753@;
+     - CarSignalDb=Data Source=Data Source=185.161.208.160,33301;Initial Catalog=CarSignal;Integrated Security=False;User id=swed_q;Password=qwe159753@;MultipleActiveResultSets=True;
     networks:
       mynet:
         ipv4_address: 172.20.0.2
@@ -36,7 +20,7 @@ services:
       context: .
       dockerfile: Signal.Simulator\Dockerfile
     environment:
-     - CarSignalDb=Data Source=Data Source=185.161.208.161,33301;Initial Catalog=CarSignal;Integrated Security=False;User id=swed_q;Password=qwe159753@;
+     - CarSignalDb=Data Source=185.161.208.160,33301;Initial Catalog=CarSignal;Integrated Security=False;User id=swed_q;Password=qwe159753@;MultipleActiveResultSets=True;
     networks:
       mynet:
         ipv4_address: 172.20.0.3
@@ -45,4 +29,4 @@ networks:
   mynet:
     ipam:
       config:
-        - subnet: 172.20.0.0/24
+        - subnet: 172.20.0.0/24  

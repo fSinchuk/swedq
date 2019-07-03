@@ -4,7 +4,13 @@
 }
 <h5>Dashboard</h5>
 <div class="input-group mb-3">
-    <input type="text" id="tbFilter" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+    <input type="text" id="tbFilter" class="col-12 form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+    <select id="cbType" >
+        <option value="-1" selected>All</option>
+        <option value="1">Vin</option>
+        <option value="2">RegNr</option>
+        <option value="3">Customer Name</option>
+    </select>
     <div class="input-group-append">
         <button onclick="Notify()" class="btn btn-outline-secondary" type="button">Fillter</button>
     </div>
@@ -35,7 +41,8 @@
         function Notify() {
            
             let filter = $('#tbFilter').val();
-            $.get("/Home/Find", { filter: filter }, function (partialView) {$("#dvCars").html(partialView); })
+            let searchType = $('#cbType').val();
+            $.get("/Home/Find", { filter: filter, serachType: searchType }, function (partialView) { $("#dvCars").html(partialView); })
 
            
         }

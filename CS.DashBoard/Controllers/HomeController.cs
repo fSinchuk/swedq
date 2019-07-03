@@ -47,6 +47,9 @@ namespace CS.DashBoard.Controllers
                     case (int)SearchType.CustomerName:
                         model = await carService.GetByCustomerName(filter);
                         break;
+                    default:
+                        model = await carService.GetAll();
+                        break;
                 }
             }
             else

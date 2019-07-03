@@ -13,7 +13,7 @@ namespace CS.DAL.Repository
     public class CustomerCarRepository : Repository<Customer_Car>, ICustomerCarRepository
     {
         public CustomerCarRepository(DashboardContext context) : base(context) { }
-        public Task<List<Customer_Car>> GetAll(int customerId) => context.Customer_Cars.Include("Customer").Include("Car_Status").ToListAsync();
+        public override Task<List<Customer_Car>> GetAll() => context.Customer_Cars.Include("Customer").Include("Car_Status").ToListAsync();
         public Task<List<Customer_Car>> GetByRegNumber(string number) => context.Customer_Cars.Where(w => w.RegNr.Contains(number)).ToListAsync();
         public Task<List<Customer_Car>> GetByVin(string vin) => context.Customer_Cars.Where(w => w.Vin.Contains(vin)).ToListAsync();
         public Task<List<Customer_Car>> GetByCustomerName(string name) => context.Customer_Cars.Include("Customer").Include("Car_Status").Where(w => w.Customer.Name.Contains(name)).ToListAsync();

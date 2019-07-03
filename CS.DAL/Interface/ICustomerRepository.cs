@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CS.DAL.Interface
 {
-    public interface ICustomer: IRepository<Customer>
+    public interface ICustomerRepository: IRepository<Customer>
     {
         Task<List<Customer>> GetAll();
     }

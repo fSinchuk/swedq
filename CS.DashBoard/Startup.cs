@@ -30,7 +30,7 @@ namespace CS.DashBoard
         {
             services.AddSingleton(configuration);
             CS.Services.Configure.ConfigureServices(services);
-            CS.DAL.Configure.ConfigureServices(services, Environment.GetEnvironmentVariable("CarSignalDb"));
+            CS.DAL.Configure.ConfigureServices(services, this.configuration.GetConnectionString("CarSignalDb"));
             
             services.AddSignalR();
             services.AddTransient<SqlNotification>();

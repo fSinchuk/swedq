@@ -9,7 +9,6 @@ namespace CS.DAL.Interface
 {
     public interface ICustomerCarRepository : IRepository<Customer_Car>
     {
-        Task<List<Customer_Car>> GetAll(int customerId);
         Task<List<Customer_Car>> GetByRegNumber(string number);
         Task<List<Customer_Car>> GetByVin(string vin);
         Task<List<Customer_Car>> GetByCustomerName(string name);

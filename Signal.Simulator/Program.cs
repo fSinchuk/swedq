@@ -1,4 +1,5 @@
 ﻿using CS.DAL;
+using CS.DAL.Interface;
 using CS.DAL.Repository;
 using CS.Models;
 using CS.Services;
@@ -22,7 +23,7 @@ namespace Signal.Simulator
 
             var serviceProvider = new ServiceCollection().
                  AddDbContext<DashboardContext>(options => options.UseSqlServer(connectionString)).
-                 AddScoped<IRepository<Customer_Car>, Repository<Customer_Car>>().
+                 AddScoped<ICustomerCarRepository, CustomerCarRepository>().
                  AddScoped<IRepository<Car_Status>, Repository<Car_Status>>().
                  AddTransient<ICarStatusService, CarStatusService>().
                  AddTransient<ICustomerCarService, CustomerCarService>().
