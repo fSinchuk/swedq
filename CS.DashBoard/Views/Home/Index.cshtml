@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<h5>Dashboard</h5>
+<div class="input-group mb-3">
+    <input type="text" id="tbFilter" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+    <div class="input-group-append">
+        <button onclick="Notify()" class="btn btn-outline-secondary" type="button">Fillter</button>
+    </div>
+</div>
+
+
+
+<div class="row" id="dvCars">
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(function () {
+            Notify();
+        });
+
+            var connection = new signalR.HubConnectionBuilder().withUrl("/signalHub").build();
+            connection.start().catch(function (e) { console.error(e) });
+
+            connection.on("NotifyData", function () {
+                Notify();
+                
+            });
+
+
+        function Notify() {
+           
+            let filter = $('#tbFilter').val();
+            $.get("/Home/Find", { filter: filter }, function (partialView) {$("#dvCars").html(partialView); })
+
+           
+        }
+    </script>
+
+}
+

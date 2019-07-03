@@ -1,0 +1,42 @@
+﻿@using CS.Models
+@model List<Customer_Car>
+
+
+@if (Model.Count > 0)
+{
+    string statusClass = "bg-success";
+    foreach (var car in Model)
+    {
+        switch (car.StatusId)
+        {
+            case 1:
+                statusClass = "bg-info";
+                break;
+            case 2:
+                statusClass = "bg-warning";
+                break;
+            case 3:
+                statusClass = "bg-success";
+                break;
+            case 4:
+                statusClass = "bg-danger";
+                break;
+            default:
+                statusClass = "bg-success";
+                break;
+
+        }
+
+        <div class="col-12 col-md-3">
+            <h6 class="@statusClass"> @car.Car_Status.Name</h6>
+            <h6>@car.Customer.Name @car.Vin @car.RegNr</h6>
+           <hr />
+        </div>
+    }
+}
+else
+{
+    <div class="col-12">
+        Records not found !
+    </div>
+}
